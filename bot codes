@@ -1,0 +1,112 @@
+import discord
+import random
+import time
+from discord.ext import commands
+
+intents = discord.Intents.default()
+
+intents.message_content = True
+
+bot = commands.Bot(command_prefix='.', intents=intents)
+
+
+@bot.event
+async def on_ready():
+    print(f'{bot.user} olarak giriş yaptık')
+
+@bot.command()
+async def hello(ctx):
+    await ctx.send(f'Merhaba {bot.user}! Ben çevre dostu bir botum!')
+    time.sleep(1)
+    await ctx.send(f'Haydi biraz konuşalım!')
+
+
+@bot.command()
+async def chat(ctx):
+    await ctx.send(f'Merhaba! Ne hakkında konuşalım?')
+
+@bot.command()
+async def cevre(ctx):
+    await ctx.send(f'Çevre ve kirlilik hakkında bir şey yapmak istiyorsanız oneri komutunu kullanın!')
+    time.sleep(1)
+    await ctx.send(f'Atıkların doğada ne kadar sürede yok olduğunu görmek istiyorsanız atik komutunu kullanın!')
+    time.sleep(1)
+    await ctx.send(f"Günlük hayatta nelere dikkat ediceğinizi öğrenmek istiyorsanız gunluk komutunu kullanın!")
+    time.sleep(1)
+    await ctx.send(f"Sorun kalmadıysa bye komutunu kullan!")
+    
+    time.sleep(1)
+    await ctx.send(f"Çevre kirliliği ile alakalı bir resim ve söz için resim komutunu kullanın!")
+@bot.command()
+async def oneri(ctx):
+    await ctx.send(f'Geri dönüşüm ve hangi malzemelerin geri dönüştürülebileceği hakkında bilgi edinin ve günlük yaşamınızda geri dönüştürülebilir malzemeleri kullanın')
+    time.sleep(1)
+    await ctx.send(f'Eski eşyaları çöpe atmak yerine geri dönüştürün')
+    time.sleep(1)
+    await ctx.send(f'Tek kullanımlık ürünlerin kullanımını azaltmak için yeniden kullanılabilir ürünler kullanın.')
+    time.sleep(1)
+    await ctx.send(f'Hangi ürünlerin ve ambalajların geri dönüşüm için en iyi olduğunu araştırın ve satın alırken bunları seçin.')
+    time.sleep(1)
+    with open(r'ders6/su.png', 'rb') as f:
+        picture = discord.File(f)
+    await ctx.send(file=picture)
+    time.sleep(1)
+    await ctx.send(f'Su kullanmadığınız zamanlarda musluğu açık bırakmayarak su tasarrufu yapın.')
+    time.sleep(1)
+    await ctx.send(f'Evde ampuller ve klimalar gibi enerji tasarruflu cihazlar kullanın..')
+    time.sleep(1)
+    await ctx.send(f'Ulaşım masraflarını azaltmak için yerel kaynaklardan yiyecek satın alın.')
+    time.sleep(1)
+    await ctx.send(f'Araba kullanmak yerine toplu taşıma araçlarını, bisikletleri ve kullanmaya çalışın.')
+@bot.command()   
+async def atik(ctx):
+    await ctx.send(f"Bir elma çöpünün doğada kaybolması için 2 ay yeterlidir")
+    time.sleep(1)
+    await ctx.send(f"Bir plastik şişenin doğada kaybolması için 450 yıl yeterlidir")
+    time.sleep(1)
+    await ctx.send(f"Bir bebek bezinin doğada kaybolması için 550 yıl yeterlidir")
+    time.sleep(1)
+    with open(r'ders6/atiklar.png', 'rb') as f:
+        picture = discord.File(f)
+    await ctx.send(file=picture)
+    time.sleep(1)
+    await ctx.send(f"Bir aliminyum kutunun doğada kaybolması için 200-300 yıl yeterlidir")
+    time.sleep(1)
+    await ctx.send(f"Bir straforun doğada kaybolması için 5000-2 milyon yıl yeterlidir")
+    time.sleep(1)
+    await ctx.send(f"Bir pilin doğada kaybolması için 300 yıl yeterlidir")
+@bot.command()
+async def gunluk(ctx):    
+    await ctx.send(f"Evlerimizde ve iş yerlerimizde su, kâğıt ve elektrik tüketimini bilinçli olarak yapmalı; bu konuda çevremizdeki insanları da uyarmalıyız.")
+    time.sleep(1)
+    await ctx.send(f"Çöplerimizi kesinlikle çevreye atmamalı; cam, plastik ve kâğıt gibi atık maddelerin geri dönüşümünü sağlamalıyız.")
+    time.sleep(1)
+    await ctx.send(f"Balkonumuzu ve bahçemizi yeşillendirmeli, yeşil alanların artması için ağaç dikmeli, ormanların tahribatını önlemeliyiz.")
+    time.sleep(1)
+    await ctx.send(f"Evimizde ve bahçemizde ozon tabakasına zarar veren kimyasal maddeler kullanmamalıyız.")
+    time.sleep(1)
+    await ctx.send(f"Evlerimizde ısı yalıtımı yaptırmalı, güneş enerjisi veya doğalgaz enerjisini tercih etmeliyiz.")
+    time.sleep(1)
+    await ctx.send(f"Otomobil egzozlarının verdiği zararlı etkiyi azaltmak için mümkün olduğunca toplu taşıma araçlarını kullanmaya özen göstermeliyiz.")
+    time.sleep(1)
+    with open(r'ders6/cevremiz.png', 'rb') as f:
+        picture = discord.File(f)
+    await ctx.send(file=picture)
+    time.sleep(1)
+    await ctx.send(f"Alışverişlerde gereksiz yere plastik poşet kullanmamaya dikkat etmeli ve elimizdeki plastik poşetleri yeniden kullanmalıyız.")
+    time.sleep(1)
+    await ctx.send(f"Banyoda ve mutfakta sürekli kullandığımız ürünler için daha az plastik içeren ve/veya geri dönüştürülebilir ambalajlarda sunulanları tercih etmeliyiz.")
+@bot.command()
+async def bye(ctx): 
+    await ctx.send(f"Kendine iyi bak sorun olursa hep burdayım")
+    with open(r'ders6/ayi.png', 'rb') as f:
+        picture = discord.File(f)
+    await ctx.send(file=picture)
+@bot.command()
+async def resim(ctx):
+    with open(r'ders6/Cevre.png', 'rb') as f:
+        picture = discord.File(f)
+    await ctx.send(file=picture)
+    time.sleep(1)
+    await ctx.send(f'Hep birlikte tercih ve alışkanlıklarımızı değiştirerek çevre kirliliği sorununu çözmeye çalışalım ve dünyamızı temiz tutalım.')
+bot.run("token")
